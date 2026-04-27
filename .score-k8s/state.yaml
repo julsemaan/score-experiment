@@ -34,10 +34,10 @@ workloads:
             port: 8080
             targetPort: 3000
     file: score.yaml
-    instance_suffix: -f390b3479c
+    instance_suffix: -3b91c240cb
 resources:
   dns.default#hello-world.dns:
-    guid: 565677e5-94fb-4fae-724c-84a03d901eaa
+    guid: c7dbd0f0-ebb4-4682-4212-7f3bbe0d6ebd
     type: dns
     class: default
     id: hello-world.dns
@@ -46,11 +46,11 @@ resources:
     source_workload: hello-world
     provisioner: template://default-provisioners/dns
     state:
-      instanceHostname: dnsrks2yb.localhost
+      instanceHostname: dns8lmgrj.localhost
     outputs:
-      host: dnsrks2yb.localhost
+      host: dns8lmgrj.localhost
   postgres.default#hello-world.db:
-    guid: 2266f3e9-bf03-4ba0-0158-386d67cd7f04
+    guid: 6e3ce57c-1c12-4738-f4ff-7bce8f048179
     type: postgres
     class: default
     id: hello-world.db
@@ -59,19 +59,19 @@ resources:
     source_workload: hello-world
     provisioner: template://default-provisioners/postgres
     state:
-      database: db-gwLuPvmi
-      password: hrYaqXyydBUnd3os
-      service: pg-hello-world-2266f3e9
-      username: user-kovHZAhl
+      database: db-mYXNiysy
+      password: GNC0ib17YsHoCMY7
+      service: pg-hello-world-6e3ce57c
+      username: user-QDxmLnPn
     outputs:
-      database: db-gwLuPvmi
-      host: pg-hello-world-2266f3e9
-      name: db-gwLuPvmi
-      password: "\U0001F510\U0001F4ACpg-hello-world-2266f3e9_password\U0001F4AC\U0001F510"
+      database: db-mYXNiysy
+      host: pg-hello-world-6e3ce57c
+      name: db-mYXNiysy
+      password: "\U0001F510\U0001F4ACpg-hello-world-6e3ce57c_password\U0001F4AC\U0001F510"
       port: 5432
-      username: user-kovHZAhl
+      username: user-QDxmLnPn
   route.default#hello-world.route:
-    guid: aca30b24-60d9-4581-a865-0b5905c6c30b
+    guid: 5233783b-4b7d-4794-5083-65c3646711d9
     type: route
     class: default
     id: hello-world.route
@@ -83,6 +83,6 @@ resources:
     source_workload: hello-world
     provisioner: template://default-provisioners/route
     state:
-      routeName: route-hello-world-aca30b24
+      routeName: route-hello-world-5233783b
 shared_state: {}
 patching_templates: []

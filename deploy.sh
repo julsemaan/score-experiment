@@ -1,0 +1,25 @@
+cat <<EOF | kind create cluster -n score-experiment --config=-
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraPortMappings:
+  - containerPort: 31000
+    hostPort: 80
+    protocol: TCP
+EOF
+
+
+GATEWAY_API_VERSION=$(curl -sL https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/latest | jq -r .tag_name)
+kubectl apply \
+    -f https://github.com/kubernetes-sigs/gateway-api/releases/download/${GATEWAY_API_VERSION}/standard-install.yaml
+
+
+helm upgrade ngf oci://ghcr.io/nginxinc/charts/nginx-gateway-fabric \
+    --install \
+    --create-namespace \
+    -n nginx-gateway \
+    --set service.type=NodePort \
+    --set-json 'service.ports=[{"port":80,"nodePort":31000}]'
+
+kubectl apply -f gateway.yaml
